@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import '../styles/DrumKit.css';
 
 export default class DrumKit extends Component {
   constructor() {
