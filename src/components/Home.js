@@ -86,7 +86,6 @@ export default class Home extends Component {
             source={tink}
           />
         </div>
-        <p>Click Button or Press "A" on Keyboard to Play Sound</p>
     </div>
     );
   }
