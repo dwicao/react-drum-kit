@@ -1,11 +1,15 @@
 import React, { Component, PropTypes } from 'react';
-import {findDOMNode} from 'react-dom';
 
 export default class DrumKit extends Component {
   constructor() {
     super();
 
+    this.state = {
+      isPlaying: false
+    };
+
     this._playSound = this._playSound.bind(this);
+    this._onTransitionEnd = this._onTransitionEnd.bind(this);
   }
 
   componentDidMount() {
@@ -17,19 +21,26 @@ export default class DrumKit extends Component {
     window.removeEventListener('keydown', this._playSound);
   }
 
-  _playSound(evt) {
-    if (evt.keyCode === this.props.code || evt.type === 'click') {
+  _playSound(event) {
+    if (event.keyCode === this.props.code || event.type === 'click') {
+      this.setState({ isPlaying: true });
       this.audio.currentTime = 0;
       this.audio.play();
     }
   }
 
+  _onTransitionEnd(event) {
+    this.setState({ isPlaying: false });
+  }
+
   render() {
     const { style, bigText, smallText, className } = this.props;
+    const isPlaying = this.state.isPlaying ? `${className} isPlaying` : `${className}`;
     return (
       <button
         onClick={this._playSound}
-        className={className}
+        onTransitionEnd={this._onTransitionEnd}
+        className={isPlaying}
         style={style}>
         <kbd>{smallText}</kbd>
         <span>{bigText}</span>

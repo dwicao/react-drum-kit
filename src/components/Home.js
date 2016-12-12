@@ -1,18 +1,14 @@
 import React, { Component } from 'react';
 import DrumKit from './DrumKit';
 import clap from '../sounds/clap.wav';
-
-const styleDrum = {
-  color: 'blue'
-}
+import '../styles/main.css';
 
 export default class Home extends Component {
   render() {
     return (
       <div>
         <DrumKit
-          className="blahblah"
-          style={styleDrum}
+          className="snare"
           smallText="A"
           bigText="Snare"
           code={65}
